@@ -4,6 +4,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CursoController;
 use Inertia\Inertia;
 
 /*
@@ -38,6 +39,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// cursos mostrar
+    Route::get('/cursos', [CursoController::class, 'getCursos']);
+    Route::get('/cursos', fn () => Inertia::render('Cursos/index'))->name('cursos');
 });
 
 require __DIR__.'/auth.php';
